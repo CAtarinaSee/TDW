@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <title>TDW P03_TPC - Adivinha o número</title>
+</head>
+
+<body onload="main()">
+  <div class="bg-light pt-3 pb-3">
+    <div class="container">
+      <h1 class="display-4">Adivinha o número</h1>
+      <p class="lead">O número de tentativas está sempre a contar</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <input id="number" class="form-control" type="text" placeholder="Qual é o número?" mb-3>
+      </div>
+      <div class="col">
+        <button id="play" type="submit" class="btn btn-primary">Testar</button>
+      </div>
+      <div class="col">
+        <button id="reset" type="button" class="btn btn-danger">Reiniciar</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h2 id="feedback">
+          <!-- Feedback goes here -->
+        </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p id="tentativas" class="lead">
+          Tentativas restantes: <span id="tentativasRestantes">5</span>
+        </p>
+        <p id="cruzes">
+          <!-- As cruzes (X) serão exibidas aqui -->
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script>
+    function main() {
+      var nrMin = 1;
+      var nrMax = 100;
+      var random = Math.floor(Math.random() * (nrMax - nrMin + 1)) + nrMin;  // Inclui nrMax no intervalo
+      var numVariavel = 0;
+      var tentativasMax = 5; // Define o número máximo de tentativas
+      var tentativasRestantes = tentativasMax; // Começa com o número máximo de tentativas
+
+      var botao = document.getElementById("play");
+      var botaoReiniciar = document.getElementById("reset");
+      const container = document.getElementById('feedback');
+      const cruzesContainer = document.getElementById('cruzes');
+      const tentativasSpan = document.getElementById('tentativasRestantes');
+
+      botao.addEventListener("click", validarNum);
+      botaoReiniciar.addEventListener("click", reiniciarJogo);
+
+      // Adiciona evento ao pressionar Enter
+      document.getElementById("number").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          validarNum();
+        }
+      });
+
+      function validarNum() {
+        var numI = document.getElementById("number").value.trim();  // Remove espaços em branco
+
+        // Verifica se o valor inserido não é vazio e é um número válido
+        if (numI !== "" && !isNaN(numI)) {
+          numVariavel++;
+
+          if (numI > random) {
+            container.innerHTML = "Número maior. Tentativas: " + numVariavel;
+          } else if (numI < random) {
+            container.innerHTML = "Número menor. Tentativas: " + numVariavel;
+          } else if (numI == random) {  // Condição explícita para igualdade
+            container.innerHTML = "Parabéns! Você acertou em " + numVariavel + " tentativas!";
+            return;  // Termina o jogo se o jogador acertar
+          }
+
+          // Atualiza tentativas restantes e adiciona cruzes
+          tentativasRestantes--;
+          tentativasSpan.innerHTML = tentativasRestantes;
+          cruzesContainer.innerHTML += "X ";  // Adiciona uma cruz
+
+          // Verifica se o jogador esgotou as tentativas
+          if (tentativasRestantes === 0) {
+            container.innerHTML = "Fim de jogo! Você não adivinhou o número. O número era " + random;
+            botao.disabled = true;  // Desativa o botão de jogar
+          }
+        } else {
+          container.innerHTML = "Por favor, insira um número válido!";
+        }
+      }
+
+      function reiniciarJogo() {
+        random = Math.floor(Math.random() * (nrMax - nrMin + 1)) + nrMin;  // Gera novo número aleatório
+        numVariavel = 0;  // Reseta o número de tentativas
+        tentativasRestantes = tentativasMax;  // Reseta o número de tentativas restantes
+        document.getElementById("number").value = "";  // Limpa o campo de input
+        container.innerHTML = "";  // Limpa o feedback
+        cruzesContainer.innerHTML = "";  // Limpa as cruzes
+        tentativasSpan.innerHTML = tentativasMax;  // Reseta o número de tentativas no span
+        botao.disabled = false;  // Reativa o botão de jogar
+        console.log("Jogo reiniciado. Novo número aleatório: " + random);
+      }
+
+      console.log("Número aleatório: " + random);
+    }
+  </script>
+</body>
+
+</html>
