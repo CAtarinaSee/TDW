@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <title>TDW P02_01 - Cartões Dinâmicos</title>
+</head>
+
+<body onload="main()">
+  <div class="bg-light pt-3 pb-3">
+    <div class="container">
+      <h1 class="display-4">Cartões Dinâmicos</h1>
+      <p class="lead">Para aprender conceitos de programação</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="card-container">
+      <!-- Cartões serão adicionados aqui -->
+    </div>
+    <hr>
+    <h3>Adicionar Novo Cartão</h3>
+    <form id="addCardForm">
+      <div class="mb-3">
+        <label for="cardTitle" class="form-label">Título</label>
+        <input type="text" class="form-control" id="cardTitle" required>
+      </div>
+      <div class="mb-3">
+        <label for="cardText" class="form-label">Texto</label>
+        <input type="text" class="form-control" id="cardText" required>
+      </div>
+      <div class="mb-3">
+        <label for="cardImg" class="form-label">URL da Imagem</label>
+        <input type="text" class="form-control" id="cardImg" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Adicionar</button>
+    </form>
+  </div>
+
+  <script>
+    function main() {
+      // Array inicial de cartões
+      const cards = [
+        {
+          title: "Cartão 1",
+          text: "Texto do primeiro cartão.",
+          img: "https://picsum.photos/200/300"
+        },
+        {
+          title: "Cartão 2",
+          text: "Texto do segundo cartão.",
+          img: "https://picsum.photos/201/301"
+        }
+      ];
+
+      // Renderiza os cartões iniciais
+      cards.forEach(card => createCard(card.title, card.text, card.img));
+
+      // Adiciona um listener para o formulário
+      document.getElementById('addCardForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Pega os valores do formulário
+        const title = document.getElementById('cardTitle').value;
+        const text = document.getElementById('cardText').value;
+        const img = document.getElementById('cardImg').value;
+
+        // Adiciona o novo cartão
+        createCard(title, text, img);
+
+        // Limpa o formulário
+        document.getElementById('addCardForm').reset();
+      });
+    }
+
+    function createCard(title, text, img) {
+      // Cria o elemento do cartão
+      const cardDiv = document.createElement('div');
+      cardDiv.className = 'card mb-3';
+      cardDiv.style.width = '18rem';
+      cardDiv.innerHTML = `
+        <img src="${img}" class="card-img-top" alt="Image">
+        <div class="card-body">
+          <h5 class="card-title">${title}</h5>
+          <p class="card-text">${text}</p>
+        </div>
+      `;
+
+      // Adiciona o evento de clique para alterar a cor do fundo e exibir o botão de remover
+      cardDiv.addEventListener('click', function () {
+        toggleCardSelection(cardDiv);
+      });
+
+      // Adiciona o cartão ao container
+      document.getElementById('card-container').appendChild(cardDiv);
+    }
+
+    function toggleCardSelection(cardDiv) {
+      // Verifica se o cartão já está selecionado
+      const isSelected = cardDiv.classList.contains('selected');
+
+      // Alterna a seleção
+      if (isSelected) {
+        // Remove a cor de fundo e o botão "X"
+        cardDiv.classList.remove('selected');
+        cardDiv.style.backgroundColor = ''; // Remove a cor de fundo
+        removeDeleteButton(cardDiv); // Remove o botão de apagar
+      } else {
+        // Adiciona a cor de fundo e o botão "X"
+        cardDiv.classList.add('selected');
+        cardDiv.style.backgroundColor = 'lightgray'; // Altera a cor de fundo
+        addDeleteButton(cardDiv); // Adiciona o botão de apagar
+      }
+    }
+
+    function addDeleteButton(cardDiv) {
+      // Verifica se o botão já existe
+      if (cardDiv.querySelector('.delete-btn')) return;
+
+      // Cria o botão "X" para apagar o cartão
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = 'X';
+      deleteBtn.className = 'btn btn-danger btn-sm delete-btn';
+      deleteBtn.style.position = 'absolute';
+      deleteBtn.style.top = '10px';
+      deleteBtn.style.right = '10px';
+
+      // Adiciona o evento de clique para apagar o cartão
+      deleteBtn.addEventListener('click', function (event) {
+        event.stopPropagation(); // Impede que o clique no botão "X" altere a seleção do cartão
+        cardDiv.remove(); // Remove o cartão da página
+      });
+
+      // Adiciona o botão ao cartão
+      cardDiv.style.position = 'relative'; // Garante que o cartão tem posição relativa para o botão ser posicionado corretamente
+      cardDiv.appendChild(deleteBtn);
+    }
+
+    function removeDeleteButton(cardDiv) {
+      // Remove o botão "X", se existir
+      const deleteBtn = cardDiv.querySelector('.delete-btn');
+      if (deleteBtn) {
+        deleteBtn.remove();
+      }
+    }
+  </script>
+
+</body>
+
+</html>
