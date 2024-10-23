@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodReads</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">MoodReads</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="moodquiz.html">Mood Quiz</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalogo.html">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Playlist.html">Playlist</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Mood Quiz: O que Deves Ler?</h1>
+
+        <!-- container com o quiz -->
+        <form id="moodQuiz" class="row g-3">
+            <!-- Pergunta 1 -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Qual é o teu género favorito de livro?</h5>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="storyType" value="adventure"
+                                id="adventure">
+                            <label class="form-check-label" for="adventure">Aventura</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="storyType" value="mystery" id="mystery">
+                            <label class="form-check-label" for="mystery">Mistério</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="storyType" value="romance" id="romance">
+                            <label class="form-check-label" for="romance">Romance</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="storyType" value="fantasy" id="fantasy">
+                            <label class="form-check-label" for="fantasy">Fantasia</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="storyType" value="sci-fi" id="sci-fi">
+                            <label class="form-check-label" for="sci-fi">Ficção Científica</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pergunta 2 -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Preferes que os livros sejam:</h5>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pacing" value="fast" id="fast">
+                            <label class="form-check-label" for="fast">Rápidos e cheios de ação</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pacing" value="emotional" id="emotional">
+                            <label class="form-check-label" for="emotional">Reflexivos e emocionais</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pacing" value="detailed" id="detailed">
+                            <label class="form-check-label" for="detailed">Imersivos e detalhados</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pacing" value="twist" id="twist">
+                            <label class="form-check-label" for="twist">Surpreendentes e cheios de reviravoltas</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pergunta 3 -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Quando lês, gostas de...</h5>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="readingStyle" value="explore"
+                                id="explore">
+                            <label class="form-check-label" for="explore">Explorar novos mundos e culturas</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="readingStyle" value="solve" id="solve">
+                            <label class="form-check-label" for="solve">Responder a mistérios complexos</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="readingStyle" value="relationships"
+                                id="relationships">
+                            <label class="form-check-label" for="relationships">Seguir o desenvolvimento de
+                                relacionamentos</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="readingStyle" value="future" id="future">
+                            <label class="form-check-label" for="future">Viajar para o futuro ou outros planetas</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botão de submissão -->
+            <div class="col-12 text-center mt-3">
+                <button type="submit" class="btn">Ver Resultados</button>
+            </div>
+        </form>
+
+        <div id="results" class="mt-4"></div>
+    </div>
+
+    <script>
+
+        
+    </script>
+
+    <style>
+        /* Estilo geral - Cute */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F9F5FF;
+            color: #333;
+        }
+    
+        .container {
+            margin-top: 50px;
+            background-color: #FFFFFF;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 700px;
+            border: 2px solid #E0BBE4;
+            margin-bottom: 100px;
+        }
+    
+        h1 {
+            color: #8B5FBF;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+    
+        .card {
+            background-color: #F3E8FF;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+            transition: transform 0.3s ease;
+        }
+    
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    
+        .card-body {
+            padding: 20px;
+        }
+    
+        h5 {
+            color: #6C63FF;
+            font-weight: 500;
+        }
+    
+        label {
+            margin: 10px 0;
+            color: #555;
+        }
+    
+        .form-check-input {
+            background-color: #FF8B94;
+            border-color: #FF8B94;
+        }
+    
+        .form-check-input:checked {
+            background-color: #6C63FF;
+            border-color: #6C63FF;
+        }
+    
+        /* Estilo do botão */
+        button {
+            background-color: #FF8B94;
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+    
+        button:hover {
+            background-color: #FFAAA5;
+            cursor: pointer;
+        }
+    
+        /* Estilo da resposta */
+        #results {
+            background-color: #E0BBE4;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+    
+        /* Respostas e container dos inputs */
+        .col-md-6 {
+            margin-bottom: 30px;
+        }
+    </style>
+</body>
+
+</html>
