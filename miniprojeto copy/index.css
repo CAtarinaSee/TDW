@@ -1,0 +1,60 @@
+ body {
+     font-family: 'Poppins', sans-serif;
+     background-color: #F9F5FF;
+     color: #333;
+ }
+
+ /* Estilo do card */
+ .card {
+     margin-top: 50px;
+     background-color: #FFFFFF;
+     border-radius: 20px;
+     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+ }
+
+ .card-body {
+     padding: 30px;
+ }
+
+ h5 {
+     color: #6C63FF;
+     font-size: 2rem;
+     font-weight: 500;
+ }
+
+ /* Estilo da imagem */
+ img {
+     margin-top: 20px;
+ }
+
+ .card-text {
+     color: #666;
+ }
+
+ /* Estilo do botão */
+ .btn {
+     font-size: 1.2rem;
+     font-weight: 500;
+     transition: background-color 0.3s ease;
+ }
+
+ .btn:hover {
+     background-color: #FFAAA5;
+ }
+
+ /* Estilo da navbar */
+ .navbar-brand {
+     font-weight: 500;
+     font-size: 1.5rem;
+     color: #000000;
+ }
+
+ .nav-link {
+     font-size: 1rem;
+     color: #555;
+     padding: 10px;
+ }
+
+ .nav-link:hover {
+     color: #6C63FF;
+ }
