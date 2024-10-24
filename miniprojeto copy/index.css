@@ -4,6 +4,23 @@
      color: #333;
  }
 
+  /* Estilo da navbar */
+  .navbar-brand {
+      font-weight: 500;
+      font-size: 1.5rem;
+      color: #000000;
+  }
+
+  .nav-link {
+      font-size: 1rem;
+      color: #555;
+      padding: 10px;
+  }
+
+  .nav-link:hover {
+      color: #aba7ff;
+  }
+
  /* Estilo do card */
  .card {
      margin-top: 50px;
@@ -36,25 +53,11 @@
      font-size: 1.2rem;
      font-weight: 500;
      transition: background-color 0.3s ease;
+     color: #ffffff;
+     background-color: #000000;
+     border: #000000;
  }
 
  .btn:hover {
-     background-color: #FFAAA5;
- }
-
- /* Estilo da navbar */
- .navbar-brand {
-     font-weight: 500;
-     font-size: 1.5rem;
-     color: #000000;
- }
-
- .nav-link {
-     font-size: 1rem;
-     color: #555;
-     padding: 10px;
- }
-
- .nav-link:hover {
-     color: #6C63FF;
+     background-color: #000000;
  }

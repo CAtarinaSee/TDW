@@ -27,14 +27,14 @@
                         <a class="nav-link" href="Pesquisa.html">Pesquisa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Filmes.html"> Filmes </a>
+                        <a class="nav-link" href="filmes.html"> Filmes </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-5">
+    <div class="container" style="width: 800px;">
         <h1 class="text-center mb-4">Pesquisa de Livros</h1>
         <form id="searchForm" class="d-flex mb-4">
             <input type="text" id="searchQuery" class="form-control me-2" placeholder="Pesquisar por título ou autor"
@@ -42,10 +42,17 @@
             <button type="submit" class="btn">Pesquisar</button>
             <button type="button" id="resetButton" class="btn btn-danger ms-2">Resetar</button> <!-- Botão de reset -->
         </form>
-        <div id="results"></div> <!-- Corrigido para corresponder ao ID usado no JS -->
+        <div id="results"></div> 
     </div>
 
     <script>
+
+        // Evento de clique para o botão de reset
+            document.getElementById('resetButton').addEventListener('click', () => {
+                document.getElementById('searchQuery').value = ''; // Limpa o campo de pesquisa
+                document.getElementById('results').innerHTML = ''; // Limpa os resultados
+            });
+
         // Adicionando o evento ao formulário
         document.getElementById('searchForm').addEventListener('submit', (event) => {
             event.preventDefault(); // Previne o comportamento padrão do formulário
@@ -100,6 +107,7 @@
                 resultsDiv.innerHTML = 'Nenhum livro encontrado.';
             }
         };
+
     </script>
 
 </body>
